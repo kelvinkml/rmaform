@@ -7,13 +7,15 @@ export default function EmailForm() {
   const [from, setFrom] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const submitMail = () => {
+  const submitMail = async () => {
     console.log("sending");
     if (subject && message && from) {
-      console.log("message sent");
+      // console.log("message sent");
       axios
-        .post("http://localhost:8000/sendMail", {})
-        .then(() => {
+        .post("http://localhost:8000/sendMail", { subject, message, from })
+        .then((res) => {
+          console.log(res, "this is the res from the post");
+          console.log("message sent");
           alert("message sent");
           setSubmitted(true);
         })
@@ -48,7 +50,7 @@ export default function EmailForm() {
           onClick={() => {
             submitMail();
           }}
-          type="submit"
+          type="button"
         >
           Send Email
         </button>
