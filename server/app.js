@@ -24,9 +24,9 @@ const sendMail = (params) => {
   return client.sendEmail({
     From: "kelvin.leeming@gamma.co.uk",
     To: "kelvin.leeming@gamma.co.uk",
-    Subject: params.subject,
-    HtmlBody: `<strong>PL+ RMA</strong><br><br> ${params.message}.`,
-    TextBody: params.message,
+    Subject: params.product,
+    HtmlBody: params.emailForm,
+    TextBody: "",
     MessageStream: "broadcast",
   });
 };
