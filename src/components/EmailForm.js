@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function EmailForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [emailForm, setEmailForm] = useState(false);
-  //channel partner useStates
+  const [submitted, setSubmitted] = useState("");
+  const [emailForm, setEmailForm] = useState("");
+  const [allFieldsFilled, setAllFieldsFilled] = useState("");
+  // channel partner useStates
   const [cpContactName, setcpContactName] = useState("");
   const [cpContactNumber, setcpContactNumber] = useState("");
   const [cpEmail, setcpEmail] = useState("");
-  //product and company useStates
+  // product and company useStates
   const [product, setProduct] = useState("Phoneline+");
   const [companyName, setCompanyName] = useState("");
   const [handset, setHandset] = useState("");
   const [serial, setSerial] = useState("");
   const [mac, setMac] = useState("");
   const [faultDesc, setFaultDesc] = useState("");
-  const [firstLineDiag, setFirstLineDiag] = useState(false);
+  const [firstLineDiag, setFirstLineDiag] = useState("");
   const [resolution, setResolution] = useState("");
-  const [acceptCharge, setAcceptCharge] = useState(false);
+  const [acceptCharge, setAcceptCharge] = useState("");
   // delivery/collection details
   const [colCompany, setColCompany] = useState("");
   const [colFirstLine, setColFirstLine] = useState("");
@@ -32,22 +33,9 @@ export default function EmailForm() {
   const [delFirstName, setDelFirstName] = useState("");
   const [delContactNum, setDelContactNum] = useState("");
 
-  // const submitMail = async () => {
-  //   console.log("sending");
-  //   if (subject && message && from) {
-  //     axios
-  //       .post("http://localhost:8000/sendMail", { subject, message, from })
-  //       .then((res) => {
-  //         console.log(res, "this is the res from the post");
-  //         console.log("message sent");
-  //         alert("message sent");
-  //         setSubmitted(true);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   } else console.log("not sent");
-  // };
+  const submitMail = (event) => {
+    event.preventDefault();
 
-  const submitMail = async () => {
     setEmailForm(`
       <div>
         <h2>PL+ RMA Form</h2>
@@ -81,18 +69,55 @@ export default function EmailForm() {
         <p>Contact Name: ${colFirstName}</p>
         <p>Contact Number: ${colContactNum}</p>
       </div>`);
-    console.log("logging form submitmail", emailForm);
-    setSubmitted(true);
-    // axios
-    //   .post("http://localhost:8000/sendMail", { emailForm, product })
-    //   .then((res) => {
-    //     console.log(res, "this is the res from the post");
-    //     console.log("message sent");
-    //     alert("message sent");
-    //     setSubmitted(true);
-    //   })
-    //   .catch((err) => console.log(err));
+    console.log("logging form submitMail", emailForm);
   };
+
+  useEffect(() => {
+    // Only run this effect if emailForm has been changed, need to add logic to stop submition if any fields are missed
+    if (
+      !(
+        cpContactName &&
+        cpContactNumber &&
+        cpEmail &&
+        companyName &&
+        handset &&
+        serial &&
+        mac &&
+        faultDesc &&
+        resolution &&
+        delCompany &&
+        delFirstLine &&
+        delTown &&
+        delPostCode &&
+        delFirstName &&
+        delContactNum &&
+        colCompany &&
+        colFirstLine &&
+        colTown &&
+        colPostCode &&
+        colFirstName &&
+        colContactNum
+      )
+    ) {
+      console.log("shouldnt submit");
+      setAllFieldsFilled("Please fill in all fields");
+      return; // Stop the submission if any fields are empty
+    }
+    setAllFieldsFilled("");
+    if (emailForm) {
+      console.log("are they filled?");
+      console.log("Email form set. Proceeding with email sending.");
+
+      axios
+        .post("http://localhost:8000/sendMail", { emailForm, product })
+        .then((res) => {
+          console.log(res, "this is the res from the post");
+          console.log("message sent");
+          setSubmitted(true);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [emailForm]);
 
   if (submitted) {
     return (
@@ -105,7 +130,7 @@ export default function EmailForm() {
     return (
       <div>
         <p2>Channel Partner Details</p2>
-        <form>
+        <form onSubmit={submitMail}>
           <input
             type="text"
             placeholder="Contact Name"
@@ -278,15 +303,8 @@ export default function EmailForm() {
             onChange={(e) => setColContactNum(e.target.value)}
           />
           <br></br>
-
-          <button
-            onClick={() => {
-              submitMail();
-            }}
-            type="button"
-          >
-            Send Email
-          </button>
+          {allFieldsFilled && <p style={{ color: "red" }}>{allFieldsFilled}</p>}
+          <button type="submit">Send Email</button>
         </form>
       </div>
     );
