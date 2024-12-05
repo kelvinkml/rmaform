@@ -142,275 +142,318 @@ export default function EmailForm() {
           <p1 className="title">RMA Form</p1>
           <img src={logo} alt="logo" className={`logo`} />
         </div>
-        <div className={`form`}>
-          <form onSubmit={submitMail}>
-            <div className={`titles`}>
-              <p2>Channel Partner Details</p2>
-            </div>
+        <div className="container">
+          <div className={`form`}>
+            <form onSubmit={submitMail}>
+              <div className={`titles`}>
+                <p2>Channel Partner Details</p2>
+              </div>
 
-            <br></br>
-            <input
-              type="text"
-              placeholder="Contact Name"
-              value={cpContactName}
-              onChange={(e) => setcpContactName(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !cpContactName ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Contact Number"
-              value={cpContactNumber}
-              onChange={(e) => setcpContactNumber(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !cpContactNumber ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="email"
-              placeholder="Contact Email Address"
-              value={cpEmail}
-              onChange={(e) => setcpEmail(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !cpEmail ? "error" : ""
-              }`}
-            />
-            <br />
-            <div className={`titles`}>
-              <p2>Product and Company Details</p2>
-            </div>
+              <br></br>
+              <input
+                type="text"
+                placeholder="Contact Name"
+                value={cpContactName}
+                onChange={(e) => setcpContactName(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !cpContactName ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Contact Number"
+                value={cpContactNumber}
+                onChange={(e) => setcpContactNumber(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !cpContactNumber ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="email"
+                placeholder="Contact Email Address"
+                value={cpEmail}
+                onChange={(e) => setcpEmail(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !cpEmail ? "error" : ""
+                }`}
+              />
+              <br />
+              <div className={`titles`}>
+                <p2>Product and Company Details</p2>
+              </div>
 
-            <br />
-            <input
-              type="text"
-              placeholder="Company Name"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !companyName ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Handset Model"
-              value={handset}
-              onChange={(e) => setHandset(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !handset ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Serial Number"
-              value={serial}
-              onChange={(e) => setSerial(e.target.value)}
-              className={"input-field"}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="MAC Address"
-              value={mac}
-              onChange={(e) => setMac(e.target.value)}
-              className={`input-field ${buttonPressed && !mac ? "error" : ""}`}
-            />
-            <br />
-            <textarea
-              rows="3"
-              placeholder="Description of Fault"
-              value={faultDesc}
-              onChange={(e) => setFaultDesc(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !faultDesc ? "error" : ""
-              }`}
-            ></textarea>
-            <br />
-            <div className="checkbox">
-              <label>
-                First Line Diagnostics performed?
-                <input
-                  type="checkbox"
-                  checked={firstLineDiag}
-                  onChange={(e) => setFirstLineDiag(e.target.checked)}
-                />
-                {!firstLineDiag & buttonPressed ? " Please confirm" : ""}
-              </label>
-            </div>
+              <br />
+              <input
+                type="text"
+                placeholder="Company Name"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !companyName ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Handset Model"
+                value={handset}
+                onChange={(e) => setHandset(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !handset ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Serial Number"
+                value={serial}
+                onChange={(e) => setSerial(e.target.value)}
+                className={"input-field"}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="MAC Address"
+                value={mac}
+                onChange={(e) => setMac(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !mac ? "error" : ""
+                }`}
+              />
+              <br />
+              <textarea
+                rows="3"
+                placeholder="Description of Fault"
+                value={faultDesc}
+                onChange={(e) => setFaultDesc(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !faultDesc ? "error" : ""
+                }`}
+              ></textarea>
+              <br />
+              <div className="checkbox">
+                <label>
+                  First Line Diagnostics performed?
+                  <input
+                    type="checkbox"
+                    checked={firstLineDiag}
+                    onChange={(e) => setFirstLineDiag(e.target.checked)}
+                  />
+                  {!firstLineDiag & buttonPressed ? " Please confirm" : ""}
+                </label>
+              </div>
 
-            <input
-              placeholder="Fault Resolution"
-              type="text"
-              value={resolution}
-              onChange={(e) => setResolution(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !resolution ? "error" : ""
-              }`}
-            />
-            <br />
-            <div className="checkbox">
-              <label>
-                Acceptance of charges
-                <input
-                  type="checkbox"
-                  checked={acceptCharge}
-                  onChange={(e) => setAcceptCharge(e.target.checked)}
-                />
-                {!acceptCharge & buttonPressed ? " Please accept" : ""}
-              </label>
-              <p className="charge-text">
-                I acknowledge that the hardware will be tested by our supplier
-                and if found to be in working order it/they will be returned,
-                and the replacements charged for.
+              <input
+                placeholder="Fault Resolution"
+                type="text"
+                value={resolution}
+                onChange={(e) => setResolution(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !resolution ? "error" : ""
+                }`}
+              />
+              <br />
+              <div className="checkbox">
+                <label>
+                  Acceptance of charges
+                  <input
+                    type="checkbox"
+                    checked={acceptCharge}
+                    onChange={(e) => setAcceptCharge(e.target.checked)}
+                  />
+                  {!acceptCharge & buttonPressed ? " Please accept" : ""}
+                </label>
+                <p className="charge-text">
+                  I acknowledge that the hardware will be tested by our supplier
+                  and if found to be in working order it/they will be returned,
+                  and the replacements charged for.
+                </p>
+              </div>
+              <div className={`titles`}>
+                <p2>Delivery Details</p2>
+              </div>
+
+              <br />
+              <input
+                type="text"
+                placeholder="Company Name"
+                value={delCompany}
+                onChange={(e) => setDelCompany(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !delCompany ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="First Line Address"
+                value={delFirstLine}
+                onChange={(e) => setDelFirstLine(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !delFirstLine ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Town/City"
+                value={delTown}
+                onChange={(e) => setDelTown(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !delTown ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Postcode"
+                value={delPostCode}
+                onChange={(e) => setDelPostCode(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !delPostCode ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Contact Name"
+                value={delFirstName}
+                onChange={(e) => setDelFirstName(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !delFirstName ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Contact Number"
+                value={delContactNum}
+                onChange={(e) => setDelContactNum(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !delContactNum ? "error" : ""
+                }`}
+              />
+              <br />
+              <div className={`titles`}>
+                <p2>Collection Details</p2>
+              </div>
+
+              <br />
+              <input
+                type="text"
+                placeholder="Company Name"
+                value={colCompany}
+                onChange={(e) => setColCompany(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !colCompany ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="First Line Address"
+                value={colFirstLine}
+                onChange={(e) => setColFirstLine(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !colFirstLine ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Town/City"
+                value={colTown}
+                onChange={(e) => setColTown(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !colTown ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Postcode"
+                value={colPostCode}
+                onChange={(e) => setColPostCode(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !colPostCode ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Contact Name"
+                value={colFirstName}
+                onChange={(e) => setColFirstName(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !colFirstName ? "error" : ""
+                }`}
+              />
+              <br />
+              <input
+                type="text"
+                placeholder="Contact Number"
+                value={colContactNum}
+                onChange={(e) => setColContactNum(e.target.value)}
+                className={`input-field ${
+                  buttonPressed && !colContactNum ? "error" : ""
+                }`}
+              />
+              <br />
+              {buttonPressed && (
+                <p style={{ color: "red" }}>Please fill out all fields</p>
+              )}
+              <button className="button" type="submit">
+                Submit Form
+              </button>
+            </form>
+          </div>
+          <div className="add-info">
+            <div className="titles">
+              <p2>First Line Diagnostics</p2>
+            </div>
+            <p className="FLD">
+              Before submitting, please confirm you have tried the following:
+            </p>
+            <ul>
+              <li>Checked cables</li>
+              <li>Checked internet connection</li>
+              <li>Restarted device/base station</li>
+            </ul>
+            <div className="titles">
+              <p2>What happens next...</p2>
+            </div>
+            <p>
+              If you are receiving the replacement device on behalf of your
+              customer, you can register it for them via the PhoneLine+ Partner
+              Portal. To do this you will need the make, model, and MAC address
+              of the device. Alternatively, if the replacement device is being
+              sent directly to your customer, they can register it by logging
+              into the PhoneLine+ client and using the same details as above.
+              Once the device has been registered successfully, it will then be
+              available to use immediately with their PhoneLine+ account.
+              <p>
+                Please note that replacement units are usually reconditioned
+                devices and subsequently the outer packaging may not be the
+                device’s original box.
               </p>
-            </div>
-            <div className={`titles`}>
-              <p2>Delivery Details</p2>
-            </div>
-
-            <br />
-            <input
-              type="text"
-              placeholder="Company Name"
-              value={delCompany}
-              onChange={(e) => setDelCompany(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !delCompany ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="First Line Address"
-              value={delFirstLine}
-              onChange={(e) => setDelFirstLine(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !delFirstLine ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Town/City"
-              value={delTown}
-              onChange={(e) => setDelTown(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !delTown ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Postcode"
-              value={delPostCode}
-              onChange={(e) => setDelPostCode(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !delPostCode ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Contact Name"
-              value={delFirstName}
-              onChange={(e) => setDelFirstName(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !delFirstName ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Contact Number"
-              value={delContactNum}
-              onChange={(e) => setDelContactNum(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !delContactNum ? "error" : ""
-              }`}
-            />
-            <br />
-            <div className={`titles`}>
-              <p2>Collection Details</p2>
-            </div>
-
-            <br />
-            <input
-              type="text"
-              placeholder="Company Name"
-              value={colCompany}
-              onChange={(e) => setColCompany(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !colCompany ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="First Line Address"
-              value={colFirstLine}
-              onChange={(e) => setColFirstLine(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !colFirstLine ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Town/City"
-              value={colTown}
-              onChange={(e) => setColTown(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !colTown ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Postcode"
-              value={colPostCode}
-              onChange={(e) => setColPostCode(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !colPostCode ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Contact Name"
-              value={colFirstName}
-              onChange={(e) => setColFirstName(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !colFirstName ? "error" : ""
-              }`}
-            />
-            <br />
-            <input
-              type="text"
-              placeholder="Contact Number"
-              value={colContactNum}
-              onChange={(e) => setColContactNum(e.target.value)}
-              className={`input-field ${
-                buttonPressed && !colContactNum ? "error" : ""
-              }`}
-            />
-            <br />
-            {buttonPressed && (
-              <p style={{ color: "red" }}>Please fill out all fields</p>
-            )}
-            <button className="button" type="submit">
-              Submit Form
-            </button>
-          </form>
-        </div>
-        <div className="addInfo">
-          {/* <p className="FLD">
-            Before submitting, please confirm you have tried the following:
-            Checked cables
-          </p> */}
+              The team will give instructions on how to return the faulty
+              device(s), please ensure these are sent to the address given asap.
+              Failure of booked collections may incur a charge so please ensure
+              the contact email address provided is reliable.
+              <p>
+                Please be aware the hardware will be tested by our supplier and
+                if found to be in working order it/they will be returned, and
+                the replacements charged for.
+              </p>
+              <p>
+                If we do not receive the hardware back within 2 weeks after we
+                have provided the replacements, then we will have to charge for
+                the replacements.
+              </p>
+            </p>
+          </div>
         </div>
       </div>
     );

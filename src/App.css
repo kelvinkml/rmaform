@@ -36,7 +36,10 @@
     transform: rotate(360deg);
   }
 }
-
+.container {
+  border: solid;
+  display: flex;
+}
 .input-field {
   margin-bottom: 5px; /* Adds spacing between input fields */
   padding: 5px; /* Adds padding inside input fields */
@@ -96,4 +99,9 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+.add-info {
+  border: solid;
+  padding: 20px;
+  /* margin: 10px; */
 }
